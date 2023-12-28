@@ -6,6 +6,7 @@
 - [Quantum machine learning in feature Hilbert spaces](https://arxiv.org/abs/1803.07128)
 - [High Dimensional Quantum Machine Learning With Small Quantum Computers](https://arxiv.org/abs/2203.13739)
 - [Trading classical and quantum computational resources](https://arxiv.org/abs/1506.01396)
+  
 - [Data re-uploading for a universal quantum classifier]( https://arxiv.org/abs/1907.02085)
 - [Data re-uploading tutorial](https://github.com/NLESC-quantum/quantum_comp/tree/main/pulsar_search/ml/reupload)
 

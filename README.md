@@ -9,12 +9,15 @@
 - [Data re-uploading for a universal quantum classifier]( https://arxiv.org/abs/1907.02085)
 - [Data re-uploading tutorial](https://github.com/NLESC-quantum/quantum_comp/tree/main/pulsar_search/ml/reupload)
 
-### Objectives
+## Objectives and tasks
 - Learn and understand how to use parametrized quantum circuits as classifiers
 - Provide an implementation of a parametrized quantum circuit classifier
 - Simulate access to a larger parametrized quantum circuit
 - Conclude about the number of circuits needed to simulate a circuit which is larger by just one qubit
 
-### Tools
+## Dataset
+- [Moons](https://scikit-learn.org/stable/modules/generated/sklearn.datasets.make_moons.html)
+
+## Tools
 - [QisKit](https://qiskit.org/)
 - [Pennylane](https://pennylane.ai/)

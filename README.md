@@ -7,8 +7,7 @@
 - [High Dimensional Quantum Machine Learning With Small Quantum Computers](https://arxiv.org/abs/2203.13739)
 - [Trading classical and quantum computational resources](https://arxiv.org/abs/1506.01396)
 ### Investigated:
-- [Data re-uploading for a universal quantum classifier]( https://arxiv.org/abs/1907.02085)
-- [Data re-uploading tutorial](https://github.com/NLESC-quantum/quantum_comp/tree/main/pulsar_search/ml/reupload)
+- [Variational Quantum Classifier for Binary Classification: Real vs Synthetic Dataset](https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=9665779)
 
 ## Objectives and tasks
 - Learn and understand how to use parametrized quantum circuits as classifiers

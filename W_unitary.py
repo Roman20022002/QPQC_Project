@@ -21,11 +21,11 @@ def add_Z_gates(qc, n, j):
     return 0
 
 
-def W(qc,Theta, n, l):
-    # qc = qk.QuantumCircuit(n)
+def W(qc,theta, n, l):
+    Theta_matrix = np.reshape(theta, (n,l,3))
     for j in range(l):
         for i in range(n):
-            theta_gate(qc,Theta[i,j,:],i)
+            theta_gate(qc,Theta_matrix[i,j,:],i)
         add_Z_gates(qc, n, j)
     return qc
 

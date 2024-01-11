@@ -1,7 +1,7 @@
 # QPQC_Project: Big quantum circuits on Small quantum computers
 
 ## Literature
-### Given:
+### Provided:
 - [Supervised learning with quantum enhanced feature spaces](https://arxiv.org/abs/1804.11326)
 - [Quantum machine learning in feature Hilbert spaces](https://arxiv.org/abs/1803.07128)
 - [High Dimensional Quantum Machine Learning With Small Quantum Computers](https://arxiv.org/abs/2203.13739)

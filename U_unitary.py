@@ -39,7 +39,6 @@ def Hn(n,circuit):
     return 0
 
 def U(qc,x,n,d):
-    # qc = qk.QuantumCircuit(n,n)
     for i in range(d):
         Hn(n,qc)
         U_single(x,n,qc)

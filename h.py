@@ -20,7 +20,7 @@ def circuit(x,theta,n,d):
 Define function h that returns +- 1 depending on the expectation value of Z^n
 
 x: data 
-theta: optimization parameter
+theta: optimization parameters
 n: number of qubits
 d: depth of circuit
 shots: number of repititions for experiment in order to determine expectation value

@@ -20,4 +20,3 @@
 
 ## Tools
 - [QisKit](https://qiskit.org/)
-- [Pennylane](https://pennylane.ai/)

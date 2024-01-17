@@ -27,10 +27,13 @@ def U_single(x,n,circuit):
             theta = 2*i
             circuit.p(theta,i-1)
         else:
-            theta = 2*phi_ij(x[i[0]-1],x[i[1]-1])
-            circuit.cx(i[0]-1,i[1]-1)
-            circuit.p(theta,i[1]-1)
-            circuit.cx(i[0]-1,i[1]-1)
+            if abs(i[0]-i[1])>1:
+                continue
+            else:
+                theta = 2*phi_ij(x[i[0]-1],x[i[1]-1])
+                circuit.cx(i[0]-1,i[1]-1)
+                circuit.p(theta,i[1]-1)
+                circuit.cx(i[0]-1,i[1]-1)
 
     return 0
 

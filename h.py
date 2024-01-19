@@ -10,6 +10,9 @@ def circuit(x,theta,n,d):
     circuit = qk.QuantumCircuit(n,n)
     circuit = U(circuit,x,n,d)
     circuit = W(circuit,theta,n,d)
+
+    #Add observable Z^n to measure
+    circuit.z(range(n))
     
     #Add measurement to circuit
     circuit.measure(range(n),range(n))

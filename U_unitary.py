@@ -24,7 +24,7 @@ def U_single(x,n,circuit):
     
     for i in set:
         if type(i) == int:
-            theta = 2*i
+            theta = 2*x[i-1]
             circuit.p(theta,i-1)
         else:
             if abs(i[0]-i[1])>1:

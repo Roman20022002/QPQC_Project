@@ -30,9 +30,9 @@ shots: number of repititions for experiment in order to determine expectation va
 '''
 def h(x,theta,n,d,shots):
     #run circuit
-    simulator = Aer.get_backend('aer_simulator',shots=shots)
+    simulator = Aer.get_backend('aer_simulator')
     job = circuit(x,theta,n,d)
-    result = simulator.run(job).result()
+    result = simulator.run(job,shots=shots).result()
 
     #Get counts and normalize them
     counts = result.get_counts()

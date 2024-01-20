@@ -21,9 +21,11 @@ def add_Z_gates(qc, n, j,complicated_entangle):
             if j%2==0:
                 for i in range(n-1):
                     qc.cz(i,i+1)
+                qc.cz(0,n-1)
             else:
                 for i in range(n-1,0,-1):
-                    qc.cz(i-1,i)    
+                    qc.cz(i-1,i)
+                qc.cz(0,n-1)
     elif n ==2:
         qc.cz(0,1)
     return 0

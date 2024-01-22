@@ -167,24 +167,24 @@ def V4(x,n_part,circuit):
     circuit.cx(0,1) 
     return circuit
 
-def W1(qc,theta,n,n_part):
-    qc = apply_W_top_before_split(qc,theta, n, n_part)
+def W1(qc,theta,n,n_part,d):
+    qc = apply_W_top_before_split(qc,theta, n, n_part,d)
     qc = apply_u_gate(qc,0,1)
     return qc
 
-def W2(qc,theta,n,n_part):
-    qc = apply_W_top_before_split(qc,theta, n, n_part)
+def W2(qc,theta,n,n_part,d):
+    qc = apply_W_top_before_split(qc,theta, n, n_part,d)
     qc = apply_u_gate(qc,1,1)
     return qc
 
-def M1(qc,theta,n,n_part):
-    qc = apply_W_bottom_before_split(qc,theta, n, n_part)
+def M1(qc,theta,n,n_part,d):
+    qc = apply_W_bottom_before_split(qc,theta, n, n_part,d)
     qc = apply_u_gate(qc,0,0)
     qc = apply_W_bottom_after_split(qc)
     return qc
 
-def M2(qc,theta,n,n_part):
-    qc = apply_W_bottom_before_split(qc,theta, n, n_part)
+def M2(qc,theta,n,n_part,d):
+    qc = apply_W_bottom_before_split(qc,theta, n, n_part,d)
     qc = apply_u_gate(qc,1,0)
     qc = apply_W_bottom_after_split(qc)
     return qc
@@ -208,14 +208,14 @@ def h_partitioned(x,n,n_part,d,shots,theta):
         for i in range(len(combinations)):
             circuit1 = U_partitioned[combinations[i][0]](x,n_part,circuit1)
             circuit1.barrier()
-            circuit1 = W_partitioned[combinations[i][2]](circuit1,theta,n,n_part)
+            circuit1 = W_partitioned[combinations[i][2]](circuit1,theta,n,n_part,d)
             circuit1.barrier()
             circuit1.z(range(n_part))
             circuit1.measure(range(n_part),range(n_part))
 
             circuit2 = V_partitioned[combinations[i][1]](x,n_part,circuit2)
             circuit2.barrier()
-            circuit2 = M_partitioned[combinations[i][2]](circuit2,theta,n,n_part)
+            circuit2 = M_partitioned[combinations[i][2]](circuit2,theta,n,n_part,d)
             circuit2.barrier()
             circuit2.z(range(n_part))
             circuit2.measure(range(n_part),range(n_part))
@@ -232,7 +232,7 @@ def h_partitioned(x,n,n_part,d,shots,theta):
             circuit1.barrier()
             circuit1 = V_partitioned[combinations[i][0][1]](x,n_part,circuit1)
             circuit1.barrier()
-            circuit1 = W_partitioned[combinations[i][0][2]](circuit1,theta,n,n_part)
+            circuit1 = W_partitioned[combinations[i][0][2]](circuit1,theta,n,n_part,d)
             circuit1.barrier()
             circuit1.z(range(n_part))
             circuit1.measure(range(n_part),range(n_part))
@@ -241,7 +241,7 @@ def h_partitioned(x,n,n_part,d,shots,theta):
             circuit2.barrier()
             circuit2 = V_partitioned[combinations[i][1][1]](x,n_part,circuit2)
             circuit2.barrier()
-            circuit2 = M_partitioned[combinations[i][1][2]](circuit2,theta,n,n_part)
+            circuit2 = M_partitioned[combinations[i][1][2]](circuit2,theta,n,n_part,d)
             circuit2.barrier()
             circuit2.z(range(n_part))
             circuit2.measure(range(n_part),range(n_part))

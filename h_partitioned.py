@@ -1,6 +1,7 @@
 import numpy as np
 import qiskit as qk
 from qiskit import Aer
+from W_split import *
 
 def expectation(circuit,shots):
     simulator = Aer.get_backend('aer_simulator')
@@ -166,32 +167,33 @@ def V4(x,n_part,circuit):
     circuit.cx(0,1) 
     return circuit
 
-def W1(qc,theta, n, n_part, l=1):
-    Theta_matrix = np.reshape(theta, (n,l,3))[0:2,:,:]
-    for j in range(l):
-        for i in range(n_part):
-            theta_gate(qc,Theta_matrix[i,j,:],i)
-    qc.cz(0,1)        
+def W1(qc,theta,n,n_part):
+    qc = apply_W_top_before_split(qc,theta, n, n_part)
+    qc = apply_u_gate(qc,0,1)
     return qc
 
-def W2(qc,theta, n, n_part, l=1):
-    Theta_matrix = np.reshape(theta, (n,l,3))[2:4,:,:]
-    for j in range(l):
-        for i in range(n_part):
-            theta_gate(qc,Theta_matrix[i,j,:],i)
+def W2(qc,theta,n,n_part):
+    qc = apply_W_top_before_split(qc,theta, n, n_part)
+    qc = apply_u_gate(qc,1,1)
     return qc
 
-def M1(qc, theta, n, n_part, l=1):
+def M1(qc,theta,n,n_part):
+    qc = apply_W_bottom_before_split(qc,theta, n, n_part)
+    qc = apply_u_gate(qc,0,0)
+    qc = apply_W_bottom_after_split(qc)
     return qc
 
-def M2(qc, theta, n, n_part, l=1):
-    qc.cz(0,1)   
+def M2(qc,theta,n,n_part):
+    qc = apply_W_bottom_before_split(qc,theta, n, n_part)
+    qc = apply_u_gate(qc,1,0)
+    qc = apply_W_bottom_after_split(qc)
     return qc
 
 U_partitioned = [U1,U2,U3,U4]
 V_partitioned = [V1,V2,V3,V4]
 W_partitioned = [W1,W2]
 M_partitioned = [M1,M2]
+
 
 def h_partitioned(x,n,n_part,d,shots,theta):
     #Initialize circuit

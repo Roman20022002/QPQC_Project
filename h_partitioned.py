@@ -181,10 +181,10 @@ def W2(qc,theta, n, n_part, l=1):
             theta_gate(qc,Theta_matrix[i,j,:],i)
     return qc
 
-def M1(qc):
+def M1(qc, theta, n, n_part, l=1):
     return qc
 
-def M2(qc):
+def M2(qc, theta, n, n_part, l=1):
     qc.cz(0,1)   
     return qc
 
@@ -197,7 +197,6 @@ def h_partitioned(x,n,n_part,d,shots,theta):
     #Initialize circuit
     circuit1 = qk.QuantumCircuit(n_part,n_part)
     circuit2 = qk.QuantumCircuit(n_part,n_part)
-    circuit3 = qk.QuantumCircuit(n_part,n_part)
 
     assert d<=2, "d must be smaller or equal to 2"
 
@@ -207,24 +206,22 @@ def h_partitioned(x,n,n_part,d,shots,theta):
         for i in range(len(combinations)):
             circuit1 = U_partitioned[combinations[i][0]](x,n_part,circuit1)
             circuit1.barrier()
+            circuit1 = W_partitioned[combinations[i][2]](circuit1,theta,n,n_part)
+            circuit1.barrier()
             circuit1.z(range(n_part))
             circuit1.measure(range(n_part),range(n_part))
 
             circuit2 = V_partitioned[combinations[i][1]](x,n_part,circuit2)
             circuit2.barrier()
+            circuit2 = M_partitioned[combinations[i][2]](circuit2,theta,n,n_part)
+            circuit2.barrier()
             circuit2.z(range(n_part))
             circuit2.measure(range(n_part),range(n_part))
 
-            circuit3 = W_partitioned[combinations[i][2]](circuit3,theta,n,n_part)
-            circuit3.barrier()
-            circuit3.z(range(n_part))
-            circuit3.measure(range(n_part),range(n_part))
-
             expectation_1 = expectation(circuit1,shots)
             expectation_2 = expectation(circuit2,shots)
-            expectation_3 = expectation(circuit3,shots)
 
-            expectation_value += expectation_1*expectation_2*expectation_3
+            expectation_value += expectation_1*expectation_2
 
     if d == 2:
         combinations = [((i, i, k), (j, j, l)) for i in range(0, 4) for j in range(0, 4) for k in range(0,2) for l in range(0,2)]
@@ -249,9 +246,8 @@ def h_partitioned(x,n,n_part,d,shots,theta):
 
             expectation_1 = expectation(circuit1,shots)
             expectation_2 = expectation(circuit2,shots)
-            expectation_3 = expectation(circuit3,shots)
 
-            expectation_value += expectation_1*expectation_2*expectation_3
+            expectation_value += expectation_1*expectation_2
 
     if expectation_value >= 0:
         h = 1

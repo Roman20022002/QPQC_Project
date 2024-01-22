@@ -167,26 +167,63 @@ def V4(x,n_part,circuit):
     circuit.cx(0,1) 
     return circuit
 
+def apply_W_top_before_split(qc,theta, n, n_part, l=1):
+    # Corresponds to U_top
+    Theta_matrix = np.reshape(theta, (n,l,3))[0:2,:,:]
+    for j in range(l):
+        for i in range(n_part):
+                qc.rx(Theta_matrix[i,j,0],i)
+                qc.ry(Theta_matrix[i,j,1],i)
+                qc.rz(Theta_matrix[i,j,2],i)
+    qc.cz(0,1)        
+    return qc
+
 def W1(qc,theta,n,n_part,d):
-    qc = apply_W_top_before_split(qc,theta, n, n_part,d)
-    qc = apply_u_gate(qc,0,1)
+    Theta_matrix = np.reshape(theta, (n,l,3))[0:2,:,:]
+    for j in range(d):
+        for i in range(n_part):
+                qc.rx(Theta_matrix[i,j,0],i)
+                qc.ry(Theta_matrix[i,j,1],i)
+                qc.rz(Theta_matrix[i,j,2],i)
+    qc.cz(0,1)        
+    phi = (np.pi/2)
+    qc.p(phi ,1)
     return qc
 
 def W2(qc,theta,n,n_part,d):
-    qc = apply_W_top_before_split(qc,theta, n, n_part,d)
-    qc = apply_u_gate(qc,1,1)
+    Theta_matrix = np.reshape(theta, (n,l,3))[0:2,:,:]
+    for j in range(d):
+        for i in range(n_part):
+                qc.rx(Theta_matrix[i,j,0],i)
+                qc.ry(Theta_matrix[i,j,1],i)
+                qc.rz(Theta_matrix[i,j,2],i)
+    qc.cz(0,1)        
+    phi = -(np.pi/2)
+    qc.p(phi ,1)    
     return qc
 
 def M1(qc,theta,n,n_part,d):
-    qc = apply_W_bottom_before_split(qc,theta, n, n_part,d)
-    qc = apply_u_gate(qc,0,0)
-    qc = apply_W_bottom_after_split(qc)
+    Theta_matrix = np.reshape(theta, (n,l,3))[0:2,:,:]
+    for j in range(d):
+        for i in range(n_part):
+                qc.rx(Theta_matrix[i,j,0],i)
+                qc.ry(Theta_matrix[i,j,1],i)
+                qc.rz(Theta_matrix[i,j,2],i)
+    phi = (np.pi/2)
+    qc.p(phi ,0)
+    qc.cz(0,1)        
     return qc
 
 def M2(qc,theta,n,n_part,d):
-    qc = apply_W_bottom_before_split(qc,theta, n, n_part,d)
-    qc = apply_u_gate(qc,1,0)
-    qc = apply_W_bottom_after_split(qc)
+    Theta_matrix = np.reshape(theta, (n,l,3))[0:2,:,:]
+    for j in range(d):
+        for i in range(n_part):
+                qc.rx(Theta_matrix[i,j,0],i)
+                qc.ry(Theta_matrix[i,j,1],i)
+                qc.rz(Theta_matrix[i,j,2],i)
+    phi = -(np.pi/2)
+    qc.p(phi ,0)
+    qc.cz(0,1)        
     return qc
 
 U_partitioned = [U1,U2,U3,U4]

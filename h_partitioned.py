@@ -222,8 +222,9 @@ def h_partitioned(x,n,n_part,d,shots,theta):
 
             expectation_1 = expectation(circuit1,shots)
             expectation_2 = expectation(circuit2,shots)
+            expectation_3 = expectation(circuit3,shots)
 
-            expectation_value += expectation_1*expectation_2
+            expectation_value += expectation_1*expectation_2*expectation_3
 
     if d == 2:
         combinations = [((i, i, k), (j, j, l)) for i in range(0, 4) for j in range(0, 4) for k in range(0,2) for l in range(0,2)]
@@ -248,8 +249,9 @@ def h_partitioned(x,n,n_part,d,shots,theta):
 
             expectation_1 = expectation(circuit1,shots)
             expectation_2 = expectation(circuit2,shots)
+            expectation_3 = expectation(circuit3,shots)
 
-            expectation_value += expectation_1*expectation_2
+            expectation_value += expectation_1*expectation_2*expectation_3
 
     if expectation_value >= 0:
         h = 1

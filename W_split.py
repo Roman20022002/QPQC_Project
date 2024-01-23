@@ -132,3 +132,26 @@ def bottom_unitary(qc,theta,n,n_part,dag):
     qc = apply_u_gate(qc,dag,0)
     qc = apply_W_bottom_after_split(qc)
     return qc
+
+
+def W1(qc,theta,n,n_part,d):
+    qc = apply_W_top_before_split(qc,theta, n, n_part,d)
+    qc = apply_u_gate(qc,0,1)
+    return qc
+
+def W2(qc,theta,n,n_part,d):
+    qc = apply_W_top_before_split(qc,theta, n, n_part,d)
+    qc = apply_u_gate(qc,1,1)
+    return qc
+
+def M1(qc,theta,n,n_part,d):
+    qc = apply_W_bottom_before_split(qc,theta, n, n_part,d)
+    qc = apply_u_gate(qc,0,0)
+    qc = apply_W_bottom_after_split(qc)
+    return qc
+
+def M2(qc,theta,n,n_part,d):
+    qc = apply_W_bottom_before_split(qc,theta, n, n_part,d)
+    qc = apply_u_gate(qc,1,0)
+    qc = apply_W_bottom_after_split(qc)
+    return qc

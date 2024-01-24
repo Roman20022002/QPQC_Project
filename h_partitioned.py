@@ -179,7 +179,7 @@ def apply_W_top_before_split(qc,theta, n, n_part, l=1):
     return qc
 
 def W1(qc,theta,n,n_part,d):
-    Theta_matrix = np.reshape(theta, (n,l,3))[0:2,:,:]
+    Theta_matrix = np.reshape(theta, (n,d,3))[0:2,:,:]
     for j in range(d):
         for i in range(n_part):
                 qc.rx(Theta_matrix[i,j,0],i)
@@ -191,7 +191,7 @@ def W1(qc,theta,n,n_part,d):
     return qc
 
 def W2(qc,theta,n,n_part,d):
-    Theta_matrix = np.reshape(theta, (n,l,3))[0:2,:,:]
+    Theta_matrix = np.reshape(theta, (n,d,3))[0:2,:,:]
     for j in range(d):
         for i in range(n_part):
                 qc.rx(Theta_matrix[i,j,0],i)
@@ -203,7 +203,7 @@ def W2(qc,theta,n,n_part,d):
     return qc
 
 def M1(qc,theta,n,n_part,d):
-    Theta_matrix = np.reshape(theta, (n,l,3))[0:2,:,:]
+    Theta_matrix = np.reshape(theta, (n,d,3))[0:2,:,:]
     for j in range(d):
         for i in range(n_part):
                 qc.rx(Theta_matrix[i,j,0],i)
@@ -215,7 +215,7 @@ def M1(qc,theta,n,n_part,d):
     return qc
 
 def M2(qc,theta,n,n_part,d):
-    Theta_matrix = np.reshape(theta, (n,l,3))[0:2,:,:]
+    Theta_matrix = np.reshape(theta, (n,d,3))[0:2,:,:]
     for j in range(d):
         for i in range(n_part):
                 qc.rx(Theta_matrix[i,j,0],i)
